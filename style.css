@@ -30,6 +30,9 @@ body {
 
 /* Center content */
 .hero {
+    position: relative;
+    z-index: 10;
+    
     text-align: center;
     color: white;
 }
@@ -51,6 +54,8 @@ body {
 .sun {
     position: absolute;
 
+    z-index:1;
+
     top: 100px;
     right: 120px;
 
@@ -65,6 +70,8 @@ body {
         0 0 40px rgba(255, 216, 107, 0.8),
         0 0 80px rgba(255, 216, 107, 0.5),
         0 0 120px rgba(255, 216, 107, 0.3);
+
+        animation: sunGlow 6s ease-in-out infinite;
 }
 
 
@@ -133,6 +140,8 @@ body {
 
 .cloud{
     position:absolute;
+
+    z-index:2;
 
     background:white;
 
@@ -259,4 +268,51 @@ body {
 
         transform:translateX(calc(100vw + 600px));
     }
+}
+
+/* ---------- Earth ---------- */
+
+.earth {
+
+    position: absolute;
+
+    bottom: -450px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 1600px;
+    height: 900px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        to bottom,
+        #2e8b57 0%,
+        #1d6f42 30%,
+        #14532d 60%,
+        #0d3b1e 100%
+    );
+
+    z-index: 3;
+
+    box-shadow:
+        0 -20px 80px rgba(255,255,255,.12);
+}
+
+@keyframes sunGlow {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.20);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
 }
