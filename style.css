@@ -1,0 +1,262 @@
+/* Remove default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full-screen page */
+body {
+    height: 100vh;
+
+    /* Earth colors */
+    background: linear-gradient(
+        to bottom,
+        #87ceeb 0%,
+        #b7e3ff 35%,
+        #dff6ff 55%,
+        #7ec8e3 75%,
+        #145da0 100%
+    );
+
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* Center content */
+.hero {
+    text-align: center;
+    color: white;
+}
+
+/* Big title */
+.hero h1 {
+    font-size: 7rem;
+    margin-bottom: 1rem;
+
+    text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+/* Subtitle */
+.hero p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+}
+/* Glowing sun */
+.sun {
+    position: absolute;
+
+    top: 100px;
+    right: 120px;
+
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle, #fff4b0 0%, #ffd86b 60%, #ffb347 100%);
+
+    box-shadow:
+        0 0 40px rgba(255, 216, 107, 0.8),
+        0 0 80px rgba(255, 216, 107, 0.5),
+        0 0 120px rgba(255, 216, 107, 0.3);
+}
+
+
+.search-box{
+    margin-top:40px;
+
+    display:flex;
+    gap:15px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    padding:12px;
+
+    border-radius:60px;
+}
+
+.search-box input{
+
+    width:320px;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:18px;
+
+    padding:12px 20px;
+}
+
+.search-box input::placeholder{
+
+    color:rgba(255,255,255,.75);
+}
+
+.search-box button{
+
+    border:none;
+
+    background:white;
+
+    color:#1b4d6b;
+
+    font-size:16px;
+
+    padding:12px 24px;
+
+    border-radius:60px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-box button:hover{
+
+    transform:scale(1.05);
+}
+
+/* ---------- Clouds ---------- */
+
+.cloud{
+    position:absolute;
+
+    background:white;
+
+    opacity:.45;
+
+    border-radius:100px;
+
+    filter:blur(2px);
+}
+
+.cloud::before,
+.cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+}
+
+.cloud1{
+
+    width:220px;
+    height:70px;
+
+    top:140px;
+    left:-250px;
+
+    animation:drift 70s linear infinite;
+}
+
+.cloud1::before{
+
+    width:90px;
+    height:90px;
+
+    top:-35px;
+    left:25px;
+}
+
+.cloud1::after{
+
+    width:110px;
+    height:110px;
+
+    top:-45px;
+    right:25px;
+}
+
+.cloud2{
+
+    width:180px;
+    height:60px;
+
+    top:260px;
+    left:-220px;
+
+    opacity:.35;
+
+    animation:drift 95s linear infinite;
+    animation-delay:-20s;
+}
+
+.cloud2::before{
+
+    width:80px;
+    height:80px;
+
+    top:-30px;
+    left:20px;
+}
+
+.cloud2::after{
+
+    width:90px;
+    height:90px;
+
+    top:-35px;
+    right:20px;
+}
+
+.cloud3{
+
+    width:250px;
+    height:80px;
+
+    top:90px;
+    left:-300px;
+
+    opacity:.28;
+
+    animation:drift 120s linear infinite;
+    animation-delay:-60s;
+}
+
+.cloud3::before{
+
+    width:100px;
+    height:100px;
+
+    top:-40px;
+    left:30px;
+}
+
+.cloud3::after{
+
+    width:120px;
+    height:120px;
+
+    top:-50px;
+    right:30px;
+}
+
+@keyframes drift{
+
+    from{
+
+        transform:translateX(0);
+    }
+
+    to{
+
+        transform:translateX(calc(100vw + 600px));
+    }
+}
