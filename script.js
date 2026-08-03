@@ -17,7 +17,7 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-camera.position.set(0, 0.9, 4.5);
+camera.position.set(0, 1.0, 5.5);
 
 // ======================
 // Renderer
@@ -38,20 +38,30 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // Earth
 // ======================
 
-const geometry = new THREE.SphereGeometry(5.5, 128, 128);
+const geometry = new THREE.SphereGeometry(5.5, 256, 256);
 
 const textureLoader = new THREE.TextureLoader();
 
-const earthTexture = textureLoader.load("assets/textures/earth.jpg");
+const earthTexture = textureLoader.load(
+    "Assets/textures/earth.jpg",
+    () => {
+        console.log("Texture loaded successfully!");
+    },
+    undefined,
+    (err) => {
+        console.error("Texture failed to load:", err);
+    }
+);
 
 const material = new THREE.MeshStandardMaterial({
-    map: earthTexture
+    color: 0x63c8ff,
+    roughness: 0.95
 });
 
 const earth = new THREE.Mesh(geometry, material);
 
 earth.position.y = -3.7;
-earth.rotation.z = -0.4;
+earth.rotation.z = THREE.MathUtils.degToRad(23.5);
 
 scene.add(earth);
 
@@ -59,11 +69,24 @@ scene.add(earth);
 // Lights
 // ======================
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
-directionalLight.position.set(5, 3, 5);
+const directionalLight = new THREE.DirectionalLight(
+    0xffffff,
+    4.5
+);
+
+directionalLight.position.set(
+    10,
+    8,
+    8
+);
+
 scene.add(directionalLight);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+const ambientLight = new THREE.AmbientLight(
+    0xbfdfff,
+    1.1
+);
+
 scene.add(ambientLight);
 
 // ======================
@@ -107,7 +130,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    earth.rotation.y += 0.003;
+    earth.rotation.y += 0.002;
 
     renderer.render(scene, camera);
 
