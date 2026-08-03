@@ -79,7 +79,7 @@ body {
     margin-top:40px;
 
     display:flex;
-    gap:15px;
+    justify-content:center;
 
     background:rgba(255,255,255,.15);
 
@@ -92,7 +92,7 @@ body {
 
 .search-box input{
 
-    width:320px;
+    width:420px;
 
     border:none;
 
@@ -112,29 +112,6 @@ body {
     color:rgba(255,255,255,.75);
 }
 
-.search-box button{
-
-    border:none;
-
-    background:white;
-
-    color:#1b4d6b;
-
-    font-size:16px;
-
-    padding:12px 24px;
-
-    border-radius:60px;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.search-box button:hover{
-
-    transform:scale(1.05);
-}
 
 /* ---------- Clouds ---------- */
 
@@ -315,4 +292,39 @@ body {
         transform: scale(1);
     }
 
+}
+
+/* ---------- Atmosphere ---------- */
+
+.atmosphere{
+
+    position:absolute;
+
+    bottom:140px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:1400px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+
+        ellipse at center,
+
+        rgba(173,216,230,.45),
+
+        rgba(173,216,230,.18),
+
+        transparent 70%
+
+    );
+
+    filter:blur(35px);
+
+    z-index:2;
 }
