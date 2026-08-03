@@ -28,6 +28,19 @@ body {
     overflow: hidden;
 }
 
+#bg{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:0;
+}
+
 /* Center content */
 .hero {
     position: relative;
@@ -51,27 +64,29 @@ body {
     opacity: 0.95;
 }
 /* Glowing sun */
-.sun {
-    position: absolute;
+.sun{
+    position:absolute;
 
-    z-index:1;
+    z-index:100;
 
-    top: 100px;
-    right: 120px;
+    top:80px;
+    right:120px;
 
-    width: 140px;
-    height: 140px;
+    width:160px;
+    height:160px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: radial-gradient(circle, #fff4b0 0%, #ffd86b 60%, #ffb347 100%);
+    background:radial-gradient(circle,
+        #fff7c2 0%,
+        #ffe27a 45%,
+        #ffb347 100%
+    );
 
     box-shadow:
-        0 0 40px rgba(255, 216, 107, 0.8),
-        0 0 80px rgba(255, 216, 107, 0.5),
-        0 0 120px rgba(255, 216, 107, 0.3);
-
-        animation: sunGlow 6s ease-in-out infinite;
+        0 0 60px rgba(255,215,100,.8),
+        0 0 120px rgba(255,215,100,.45),
+        0 0 220px rgba(255,215,100,.25);
 }
 
 
@@ -247,36 +262,6 @@ body {
     }
 }
 
-/* ---------- Earth ---------- */
-
-.earth {
-
-    position: absolute;
-
-    bottom: -450px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 1600px;
-    height: 900px;
-
-    border-radius: 50%;
-
-    background: linear-gradient(
-        to bottom,
-        #2e8b57 0%,
-        #1d6f42 30%,
-        #14532d 60%,
-        #0d3b1e 100%
-    );
-
-    z-index: 3;
-
-    box-shadow:
-        0 -20px 80px rgba(255,255,255,.12);
-}
 
 @keyframes sunGlow {
 
@@ -292,39 +277,4 @@ body {
         transform: scale(1);
     }
 
-}
-
-/* ---------- Atmosphere ---------- */
-
-.atmosphere{
-
-    position:absolute;
-
-    bottom:140px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:1400px;
-
-    height:220px;
-
-    border-radius:50%;
-
-    background:radial-gradient(
-
-        ellipse at center,
-
-        rgba(173,216,230,.45),
-
-        rgba(173,216,230,.18),
-
-        transparent 70%
-
-    );
-
-    filter:blur(35px);
-
-    z-index:2;
 }

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <canvas id="bg"></canvas>
 
     <div class="sun"></div>
 
@@ -25,8 +26,7 @@
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
 
-<div class="atmosphere"></div>
-<div class="earth"></div>
+
 
     <div class="hero">
         <h1>Weatherly</h1>
@@ -43,7 +43,15 @@
 </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.179.1/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module" src="script.js"></script>
 
 </body>
 
