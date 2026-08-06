@@ -43,7 +43,15 @@ const geometry = new THREE.SphereGeometry(5.5, 256, 256);
 const textureLoader = new THREE.TextureLoader();
 
 const earthTexture = textureLoader.load("Assets/textures/earth.png");
-const cloudTexture = textureLoader.load("Assets/textures/cloud.png"); 
+
+const cloudTexture = textureLoader.load(
+    "Assets/textures/clouds.png"
+);
+
+cloudTexture.colorSpace = THREE.SRGBColorSpace;
+
+cloudTexture.anisotropy =
+    renderer.capabilities.getMaxAnisotropy();
 
 earthTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -66,25 +74,7 @@ earth.rotation.z = THREE.MathUtils.degToRad(23.5);
 
 scene.add(earth);
 
-// ======================
-// Clouds
-// ======================
 
-const cloudGeometry = new THREE.SphereGeometry(5.56, 256, 256);
-
-const cloudMaterial = new THREE.MeshStandardMaterial({
-    map: cloudTexture,
-    transparent: true,
-    opacity: 0.5,
-    depthWrite: false
-});
-
-const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
-
-clouds.position.copy(earth.position);
-clouds.rotation.copy(earth.rotation);
-
-scene.add(clouds);
 // ======================
 // Atmosphere
 // ======================
@@ -184,7 +174,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     earth.rotation.y += 0.002;
-    clouds.rotation.y += 0.0022;
+   
     atmosphere.rotation.y = earth.rotation.y;
 
     renderer.render(scene, camera);
