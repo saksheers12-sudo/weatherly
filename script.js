@@ -74,6 +74,34 @@ earth.rotation.z = THREE.MathUtils.degToRad(23.5);
 
 scene.add(earth);
 
+const cloudGeometry = new THREE.SphereGeometry(
+    5.52,
+    256,
+    256
+);
+
+const cloudMaterial = new THREE.MeshStandardMaterial({
+
+    map: cloudTexture,
+
+    transparent: true,
+
+    opacity: 0.35,
+
+    depthWrite: false
+
+});
+
+const clouds = new THREE.Mesh(
+    cloudGeometry,
+    cloudMaterial
+);
+
+clouds.position.copy(earth.position);
+clouds.rotation.copy(earth.rotation);
+
+scene.add(clouds);
+
 
 // ======================
 // Atmosphere
@@ -174,6 +202,8 @@ function animate() {
     requestAnimationFrame(animate);
 
     earth.rotation.y += 0.002;
+
+    clouds.rotation.y += 0.0022;
    
     atmosphere.rotation.y = earth.rotation.y;
 

@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Weatherly</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <title>Weather Wizard</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -28,20 +26,47 @@
 
 
 
-    <div class="hero">
-        <h1>Weatherly</h1>
-        <p>Experience Earth’s atmosphere</p>
-        
-        <div class="search-box">
-    <input
-        id="city-input"
-        type="text"
-        placeholder="🔍Search any city..."
-    >
+   <div class="hero">
 
-    
-</div>
+    <h1>Weatherly</h1>
+
+    <p>Experience Earth's atmosphere</p>
+
+    <div class="search-box">
+
+        <input
+            id="city-input"
+            type="text"
+            placeholder="🔍 Search any city..."
+        >
+
+        <button id="search-btn">
+            Search
+        </button>
+
     </div>
+
+    <div class="weather-card">
+
+        <h2 id="city-name">
+            Search a city
+        </h2>
+
+        <h1 id="temperature">
+            --°
+        </h1>
+
+        <p id="condition">
+            Weather will appear here
+        </p>
+
+        <p id="wind">
+            Wind: -- km/h
+        </p>
+
+    </div>
+
+</div>
 
     <script type="importmap">
 {
