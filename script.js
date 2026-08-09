@@ -292,7 +292,7 @@ searchButton.addEventListener("click", async () => {
     location.latitude,
     location.longitude
 );
-
+fadeClouds();
             
 
         temperature.textContent =
@@ -398,4 +398,41 @@ function rotateEarthToLocation(latitude, longitude) {
     }
 
     rotate();
+}
+
+// ======================
+// Atmospheric Descent
+// ======================
+
+function fadeClouds() {
+
+    if (typeof clouds === "undefined") {
+        return;
+    }
+
+    const startOpacity = cloudMaterial.opacity;
+
+    let progress = 0;
+
+    function fade() {
+
+        progress += 0.015;
+
+        if (progress > 1) {
+            progress = 1;
+        }
+
+        // Smooth easing
+        const eased =
+            progress * progress * (3 - 2 * progress);
+
+        cloudMaterial.opacity =
+            startOpacity * (1 - eased);
+
+        if (progress < 1) {
+            requestAnimationFrame(fade);
+        }
+    }
+
+    fade();
 }
