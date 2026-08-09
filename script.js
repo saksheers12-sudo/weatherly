@@ -201,11 +201,16 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    earth.rotation.y += 0.002;
+    // Gentle continuous Earth rotation
+    earth.rotation.y += 0.0008;
 
-    clouds.rotation.y += 0.0022;
-   
+    // Keep atmosphere aligned with Earth
     atmosphere.rotation.y = earth.rotation.y;
+
+    // Clouds rotate slightly faster
+    if (typeof clouds !== "undefined") {
+        clouds.rotation.y += 0.001;
+    }
 
     renderer.render(scene, camera);
 
@@ -283,6 +288,13 @@ searchButton.addEventListener("click", async () => {
 
             weatherCard.classList.add("show");
 
+            rotateEarthToLocation(
+    location.latitude,
+    location.longitude
+);
+
+            
+
         temperature.textContent =
             `${Math.round(current.temperature_2m)}°`;
 
@@ -343,5 +355,47 @@ function getWeatherCondition(code) {
 
     };
 
-    return conditions[code] || "Unknown conditions";
+    
+}
+// ======================
+// Rotate Earth to Location
+// ======================
+
+function rotateEarthToLocation(latitude, longitude) {
+
+    const targetRotation =
+        THREE.MathUtils.degToRad(longitude);
+
+    const startRotation = earth.rotation.y;
+
+    let progress = 0;
+
+    function rotate() {
+
+        progress += 0.02;
+
+        if (progress > 1) {
+            progress = 1;
+        }
+
+        // Smooth easing
+        const eased =
+            progress * progress * (3 - 2 * progress);
+
+        earth.rotation.y =
+            startRotation +
+            (targetRotation - startRotation) * eased;
+
+        atmosphere.rotation.y = earth.rotation.y;
+
+        if (typeof clouds !== "undefined") {
+            clouds.rotation.y = earth.rotation.y;
+        }
+
+        if (progress < 1) {
+            requestAnimationFrame(rotate);
+        }
+    }
+
+    rotate();
 }
