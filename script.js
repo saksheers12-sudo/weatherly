@@ -234,7 +234,7 @@ window.addEventListener("resize", () => {
 
 const cityInput = document.querySelector("#city-input");
 const searchButton = document.querySelector("#search-btn");
-
+const weatherCard = document.querySelector(".weather-card");
 const cityName = document.querySelector("#city-name");
 const temperature = document.querySelector("#temperature");
 const condition = document.querySelector("#condition");
@@ -280,6 +280,8 @@ searchButton.addEventListener("click", async () => {
 
         cityName.textContent =
             `${location.name}, ${location.country}`;
+
+            weatherCard.classList.add("show");
 
         temperature.textContent =
             `${Math.round(current.temperature_2m)}°`;

@@ -284,6 +284,11 @@ body {
    ========================= */
 
 .weather-card {
+
+        opacity: 0;
+    transform: translateY(25px);
+    pointer-events: none;
+
     margin: 32px auto 0;
     padding: 24px 30px;
 
@@ -339,4 +344,10 @@ body {
 
 .weather-card #wind {
     opacity: 0.85;
+}
+
+.weather-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
