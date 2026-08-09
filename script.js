@@ -227,3 +227,119 @@ window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
 });
+
+// ======================
+// Weather Search
+// ======================
+
+const cityInput = document.querySelector("#city-input");
+const searchButton = document.querySelector("#search-btn");
+
+const cityName = document.querySelector("#city-name");
+const temperature = document.querySelector("#temperature");
+const condition = document.querySelector("#condition");
+const wind = document.querySelector("#wind");
+
+searchButton.addEventListener("click", async () => {
+
+    const city = cityInput.value.trim();
+
+    if (!city) {
+        cityInput.focus();
+        return;
+    }
+
+    cityName.textContent = "Looking up...";
+    temperature.textContent = "--°";
+    condition.textContent = "Finding your city...";
+    wind.textContent = "Wind: -- km/h";
+
+    try {
+
+        // Find the city's coordinates
+        const locationResponse = await fetch(
+            `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`
+        );
+
+        const locationData = await locationResponse.json();
+
+        if (!locationData.results) {
+            throw new Error("City not found");
+        }
+
+        const location = locationData.results[0];
+
+        // Get weather for those coordinates
+        const weatherResponse = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=celsius&wind_speed_unit=kmh&timezone=auto`
+        );
+
+        const weatherData = await weatherResponse.json();
+
+        const current = weatherData.current;
+
+        cityName.textContent =
+            `${location.name}, ${location.country}`;
+
+        temperature.textContent =
+            `${Math.round(current.temperature_2m)}°`;
+
+        wind.textContent =
+            `Wind: ${Math.round(current.wind_speed_10m)} km/h`;
+
+        condition.textContent =
+            getWeatherCondition(current.weather_code);
+
+    } catch (error) {
+
+        console.error(error);
+
+        cityName.textContent = "Couldn't find that city";
+        temperature.textContent = "--°";
+        condition.textContent = "Try another search";
+        wind.textContent = "Wind: -- km/h";
+
+    }
+
+});
+
+
+// Convert Open-Meteo weather codes into words
+
+function getWeatherCondition(code) {
+
+    const conditions = {
+
+        0: "Clear sky",
+
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+
+        45: "Fog",
+        48: "Depositing rime fog",
+
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+
+        61: "Slight rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+
+        71: "Slight snow",
+        73: "Moderate snow",
+        75: "Heavy snow",
+
+        80: "Slight rain showers",
+        81: "Moderate rain showers",
+        82: "Violent rain showers",
+
+        95: "Thunderstorm",
+        96: "Thunderstorm with hail",
+        99: "Thunderstorm with heavy hail"
+
+    };
+
+    return conditions[code] || "Unknown conditions";
+}
