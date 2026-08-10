@@ -240,6 +240,7 @@ window.addEventListener("resize", () => {
 const weatherEffects =
     document.querySelector("#weather-effects");
     let rainDrops = [];
+    let snowFlakes = [];
 
 const cityInput = document.querySelector("#city-input");
 const searchButton = document.querySelector("#search-btn");
@@ -584,5 +585,55 @@ function createRain() {
         weatherEffects.appendChild(drop);
 
         rainDrops.push(drop);
+    }
+}
+// ======================
+// Realistic Snow System
+// ======================
+
+function createSnow() {
+
+    // Remove previous snow
+    snowFlakes.forEach(flake => flake.remove());
+
+    snowFlakes = [];
+
+    const flakeCount = 100;
+
+    for (let i = 0; i < flakeCount; i++) {
+
+        const flake = document.createElement("div");
+
+        flake.className = "snow-flake";
+
+        // Random horizontal position
+        flake.style.left =
+            Math.random() * 100 + "vw";
+
+        // Different snowflake sizes
+        const size =
+            3 + Math.random() * 8;
+
+        flake.style.width =
+            size + "px";
+
+        flake.style.height =
+            size + "px";
+
+        // Different speeds
+        flake.style.animationDuration =
+            (5 + Math.random() * 7) + "s";
+
+        // Start at different moments
+        flake.style.animationDelay =
+            -(Math.random() * 10) + "s";
+
+        // Different opacity
+        flake.style.opacity =
+            0.35 + Math.random() * 0.65;
+
+        weatherEffects.appendChild(flake);
+
+        snowFlakes.push(flake);
     }
 }
