@@ -353,15 +353,12 @@ body {
 }
 
 /* =========================
-   Full Screen Weather Effects
+   FULL SCREEN WEATHER
    ========================= */
 
 #weather-effects {
-
     position: fixed;
-
     inset: 0;
-
     z-index: 5;
 
     pointer-events: none;
@@ -372,23 +369,78 @@ body {
         opacity 0.8s ease,
         background 0.8s ease;
 
+    overflow: hidden;
 }
 
-/* Rain */
+/* =========================
+   RAIN
+   ========================= */
 
 #weather-effects.rain {
-
     opacity: 1;
 
     background:
         linear-gradient(
-            rgba(65, 90, 110, 0.18),
-            rgba(65, 90, 110, 0.18)
+            rgba(70, 90, 105, 0.16),
+            rgba(70, 90, 105, 0.16)
         );
+}
+
+/* Individual rain drops */
+
+#weather-effects.rain::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -100% 0 0 0;
+
+    background-image:
+        repeating-linear-gradient(
+            105deg,
+            transparent 0px,
+            transparent 7px,
+            rgba(220, 240, 255, 0.45) 8px,
+            transparent 9px,
+            transparent 18px
+        );
+
+    background-size: 25px 25px;
+
+    animation:
+        rainFall 0.45s linear infinite;
+
+    opacity: 0.7;
+}
+
+@keyframes rainFall {
+
+    from {
+        transform: translateY(-20px);
+    }
+
+    to {
+        transform: translateY(80px);
+    }
 
 }
 
-/* Snow */
+/* =========================
+   CLOUDY
+   ========================= */
+
+#weather-effects.cloudy {
+
+    opacity: 1;
+
+    background:
+        rgba(120, 140, 150, 0.13);
+}
+
+/* =========================
+   SNOW
+   ========================= */
 
 #weather-effects.snow {
 
@@ -396,27 +448,72 @@ body {
 
     background:
         rgba(220, 235, 245, 0.12);
+}
+
+#weather-effects.snow::before {
+
+    content: "❄  ·  ❄     ·     ❄   ·    ❄      ·  ❄";
+
+    position: absolute;
+
+    inset: -20% 0 0 0;
+
+    font-size: 28px;
+
+    line-height: 80px;
+
+    word-spacing: 35px;
+
+    opacity: 0.65;
+
+    animation:
+        snowFall 8s linear infinite;
+}
+
+@keyframes snowFall {
+
+    from {
+        transform: translateY(-100px);
+    }
+
+    to {
+        transform: translateY(110vh);
+    }
 
 }
 
-/* Storm */
+/* =========================
+   STORM
+   ========================= */
 
 #weather-effects.storm {
 
     opacity: 1;
 
     background:
-        rgba(35, 48, 60, 0.30);
-
+        rgba(35, 48, 60, 0.28);
 }
 
-/* Cloudy */
+#weather-effects.storm::before {
 
-#weather-effects.cloudy {
+    content: "";
 
-    opacity: 1;
+    position: absolute;
+
+    inset: 0;
 
     background:
-        rgba(120, 140, 150, 0.12);
+        repeating-linear-gradient(
+            105deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(200, 220, 235, 0.40) 9px,
+            transparent 10px,
+            transparent 20px
+        );
 
+    background-size: 28px 28px;
+
+    animation:
+        rainFall 0.32s linear infinite;
 }
