@@ -513,15 +513,14 @@ function updateAtmosphere(code) {
     }
 
     // RAIN
-    else if (code >= 51 && code <= 67) {
+     else if (code >= 51 && code <= 67) {
 
-        atmosphereMaterial.color.set(0x6299b5);
-        atmosphereMaterial.opacity = 0.34;
+    atmosphereMaterial.color.set(0x254f63);
+    atmosphereMaterial.opacity = 0.65;
 
-        sun.style.opacity = "0.25";
-        sun.style.filter = "brightness(0.65)";
-
-    }
+    sun.style.opacity = "0.05";
+    sun.style.filter = "brightness(0.4)";
+}
 
     // SNOW
     else if (code >= 71 && code <= 77) {
@@ -544,14 +543,4 @@ function updateAtmosphere(code) {
         sun.style.filter = "brightness(0.5)";
     }
 }
-
-// ======================
-// TEST RAIN MODE
-// ======================
-
-function testRain() {
-
-    updateAtmosphere(61);
-
-}
-testRain();
+updateAtmosphere(61);
