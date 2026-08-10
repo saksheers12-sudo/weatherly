@@ -239,6 +239,7 @@ window.addEventListener("resize", () => {
 
 const weatherEffects =
     document.querySelector("#weather-effects");
+    let rainDrops = [];
 
 const cityInput = document.querySelector("#city-input");
 const searchButton = document.querySelector("#search-btn");
@@ -512,7 +513,9 @@ function updateWeatherEnvironment(code) {
     // Rain
     else if (code >= 51 && code <= 67) {
 
-        weatherEffects.classList.add("rain");
+         weatherEffects.classList.add("rain");
+
+    createRain();
 
     }
 
@@ -530,4 +533,56 @@ function updateWeatherEnvironment(code) {
 
     }
 
+}
+
+// ======================
+// Realistic Rain System
+// ======================
+
+function createRain() {
+
+    // Remove previous rain
+    rainDrops.forEach(drop => drop.remove());
+
+    rainDrops = [];
+
+    const dropCount = 180;
+
+    for (let i = 0; i < dropCount; i++) {
+
+        const drop = document.createElement("div");
+
+        drop.className = "rain-drop";
+
+        // Random horizontal position
+        drop.style.left =
+            Math.random() * 100 + "vw";
+
+        // Random length
+        const length =
+            12 + Math.random() * 28;
+
+        drop.style.height =
+            length + "px";
+
+        // Random thickness
+        drop.style.width =
+            (0.8 + Math.random() * 1.4) + "px";
+
+        // Random opacity
+        drop.style.opacity =
+            0.25 + Math.random() * 0.65;
+
+        // Random speed
+        drop.style.animationDuration =
+            (0.45 + Math.random() * 0.7) + "s";
+
+        // Random delay
+        drop.style.animationDelay =
+            -(Math.random() * 2) + "s";
+
+        weatherEffects.appendChild(drop);
+
+        rainDrops.push(drop);
+    }
 }

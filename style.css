@@ -388,40 +388,56 @@ body {
 
 /* Individual rain drops */
 
-#weather-effects.rain::before {
+/* =========================
+   REALISTIC RAIN
+   ========================= */
 
-    content: "";
+#weather-effects.rain {
+    opacity: 1;
+
+    background:
+        rgba(55, 75, 90, 0.20);
+}
+
+.rain-drop {
 
     position: absolute;
 
-    inset: -100% 0 0 0;
+    top: -120px;
 
-    background-image:
-        repeating-linear-gradient(
-            105deg,
-            transparent 0px,
-            transparent 7px,
-            rgba(220, 240, 255, 0.45) 8px,
-            transparent 9px,
-            transparent 18px
-        );
+    width: 2px;
 
-    background-size: 25px 25px;
+    border-radius: 999px;
 
-    animation:
-        rainFall 0.45s linear infinite;
+    background: linear-gradient(
+        to bottom,
+        rgba(220, 240, 255, 0),
+        rgba(220, 240, 255, 0.85)
+    );
 
-    opacity: 0.7;
+    transform: rotate(12deg);
+
+    animation-name: realRain;
+
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+    pointer-events: none;
 }
 
-@keyframes rainFall {
+@keyframes realRain {
 
     from {
-        transform: translateY(-20px);
+        transform:
+            translate3d(0, -120px, 0)
+            rotate(12deg);
     }
 
     to {
-        transform: translateY(80px);
+        transform:
+            translate3d(-80px, 115vh, 0)
+            rotate(12deg);
     }
 
 }
