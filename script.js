@@ -240,6 +240,7 @@ window.addEventListener("resize", () => {
 const cityInput = document.querySelector("#city-input");
 const searchButton = document.querySelector("#search-btn");
 const weatherCard = document.querySelector(".weather-card");
+const sun = document.querySelector(".sun");
 const cityName = document.querySelector("#city-name");
 const temperature = document.querySelector("#temperature");
 const condition = document.querySelector("#condition");
