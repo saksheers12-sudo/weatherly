@@ -288,11 +288,14 @@ searchButton.addEventListener("click", async () => {
 
             weatherCard.classList.add("show");
 
-            rotateEarthToLocation(
+rotateEarthToLocation(
     location.latitude,
     location.longitude
 );
+
 fadeClouds();
+
+descendToEarth();
             
 
         temperature.textContent =
@@ -435,4 +438,44 @@ function fadeClouds() {
     }
 
     fade();
+}
+
+// ======================
+// Camera Descent
+// ======================
+
+function descendToEarth() {
+
+    const startZ = camera.position.z;
+    const startY = camera.position.y;
+
+    const targetZ = 4.2;
+    const targetY = 0.3;
+
+    let progress = 0;
+
+    function descend() {
+
+        progress += 0.012;
+
+        if (progress > 1) {
+            progress = 1;
+        }
+
+        // Smooth cinematic easing
+        const eased =
+            progress * progress * (3 - 2 * progress);
+
+        camera.position.z =
+            startZ + (targetZ - startZ) * eased;
+
+        camera.position.y =
+            startY + (targetY - startY) * eased;
+
+        if (progress < 1) {
+            requestAnimationFrame(descend);
+        }
+    }
+
+    descend();
 }
