@@ -489,53 +489,57 @@ function descendToEarth() {
 
 function updateAtmosphere(code) {
 
+    // CLEAR
     if (code === 0 || code === 1) {
 
-        // Clear sky
         atmosphereMaterial.color.set(0x6fdcff);
         atmosphereMaterial.opacity = 0.18;
 
+        sun.style.opacity = "1";
+        sun.style.filter = "brightness(1)";
+
     }
 
+    // CLOUDY
     else if (code === 2 || code === 3) {
 
-        // Cloudy / overcast
         atmosphereMaterial.color.set(0x9fc7d8);
-        atmosphereMaterial.opacity = 0.22;
-
-    }
-
-    else if (
-        code >= 51 &&
-        code <= 67
-    ) {
-
-        // Rain
-        atmosphereMaterial.color.set(0x78aeca);
-        atmosphereMaterial.opacity = 0.26;
-
-    }
-
-    else if (
-        code >= 71 &&
-        code <= 77
-    ) {
-
-        // Snow
-        atmosphereMaterial.color.set(0xd8efff);
         atmosphereMaterial.opacity = 0.28;
 
+        sun.style.opacity = "0.55";
+        sun.style.filter = "brightness(0.8)";
+
     }
 
-    else if (
-        code >= 80 &&
-        code <= 99
-    ) {
+    // RAIN
+    else if (code >= 51 && code <= 67) {
 
-        // Storms / heavy showers
-        atmosphereMaterial.color.set(0x668ba3);
+        atmosphereMaterial.color.set(0x6299b5);
+        atmosphereMaterial.opacity = 0.34;
+
+        sun.style.opacity = "0.25";
+        sun.style.filter = "brightness(0.65)";
+
+    }
+
+    // SNOW
+    else if (code >= 71 && code <= 77) {
+
+        atmosphereMaterial.color.set(0xb9dded);
         atmosphereMaterial.opacity = 0.30;
 
+        sun.style.opacity = "0.45";
+        sun.style.filter = "brightness(0.85)";
+
     }
 
+    // STORM / HEAVY SHOWERS
+    else if (code >= 80 && code <= 99) {
+
+        atmosphereMaterial.color.set(0x426b7d);
+        atmosphereMaterial.opacity = 0.42;
+
+        sun.style.opacity = "0.08";
+        sun.style.filter = "brightness(0.5)";
+    }
 }
