@@ -523,7 +523,9 @@ function updateWeatherEnvironment(code) {
     // Snow
     else if (code >= 71 && code <= 77) {
 
-        weatherEffects.classList.add("snow");
+         weatherEffects.classList.add("snow");
+
+    createSnow();
 
     }
 
