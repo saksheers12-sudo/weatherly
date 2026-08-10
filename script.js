@@ -283,6 +283,8 @@ searchButton.addEventListener("click", async () => {
 
         const current = weatherData.current;
 
+        updateAtmosphere(current.weather_code);
+
         cityName.textContent =
             `${location.name}, ${location.country}`;
 
@@ -449,8 +451,9 @@ function descendToEarth() {
     const startZ = camera.position.z;
     const startY = camera.position.y;
 
-    const targetZ = 4.2;
-    const targetY = 0.3;
+    const targetZ = 4.6;
+    const targetY = 0.45
+    ;
 
     let progress = 0;
 
@@ -478,4 +481,61 @@ function descendToEarth() {
     }
 
     descend();
+}
+
+// ======================
+// Weather Atmosphere
+// ======================
+
+function updateAtmosphere(code) {
+
+    if (code === 0 || code === 1) {
+
+        // Clear sky
+        atmosphereMaterial.color.set(0x6fdcff);
+        atmosphereMaterial.opacity = 0.18;
+
+    }
+
+    else if (code === 2 || code === 3) {
+
+        // Cloudy / overcast
+        atmosphereMaterial.color.set(0x9fc7d8);
+        atmosphereMaterial.opacity = 0.22;
+
+    }
+
+    else if (
+        code >= 51 &&
+        code <= 67
+    ) {
+
+        // Rain
+        atmosphereMaterial.color.set(0x78aeca);
+        atmosphereMaterial.opacity = 0.26;
+
+    }
+
+    else if (
+        code >= 71 &&
+        code <= 77
+    ) {
+
+        // Snow
+        atmosphereMaterial.color.set(0xd8efff);
+        atmosphereMaterial.opacity = 0.28;
+
+    }
+
+    else if (
+        code >= 80 &&
+        code <= 99
+    ) {
+
+        // Storms / heavy showers
+        atmosphereMaterial.color.set(0x668ba3);
+        atmosphereMaterial.opacity = 0.30;
+
+    }
+
 }
