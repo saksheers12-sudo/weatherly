@@ -544,3 +544,14 @@ function updateAtmosphere(code) {
         sun.style.filter = "brightness(0.5)";
     }
 }
+
+// ======================
+// TEST RAIN MODE
+// ======================
+
+function testRain() {
+
+    updateAtmosphere(61);
+
+}
+testRain();
