@@ -351,3 +351,72 @@ body {
     transform: translateY(0);
     pointer-events: auto;
 }
+
+/* =========================
+   Full Screen Weather Effects
+   ========================= */
+
+#weather-effects {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.8s ease,
+        background 0.8s ease;
+
+}
+
+/* Rain */
+
+#weather-effects.rain {
+
+    opacity: 1;
+
+    background:
+        linear-gradient(
+            rgba(65, 90, 110, 0.18),
+            rgba(65, 90, 110, 0.18)
+        );
+
+}
+
+/* Snow */
+
+#weather-effects.snow {
+
+    opacity: 1;
+
+    background:
+        rgba(220, 235, 245, 0.12);
+
+}
+
+/* Storm */
+
+#weather-effects.storm {
+
+    opacity: 1;
+
+    background:
+        rgba(35, 48, 60, 0.30);
+
+}
+
+/* Cloudy */
+
+#weather-effects.cloudy {
+
+    opacity: 1;
+
+    background:
+        rgba(120, 140, 150, 0.12);
+
+}

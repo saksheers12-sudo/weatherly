@@ -237,6 +237,9 @@ window.addEventListener("resize", () => {
 // Weather Search
 // ======================
 
+const weatherEffects =
+    document.querySelector("#weather-effects");
+
 const cityInput = document.querySelector("#city-input");
 const searchButton = document.querySelector("#search-btn");
 const weatherCard = document.querySelector(".weather-card");
@@ -284,7 +287,7 @@ searchButton.addEventListener("click", async () => {
 
         const current = weatherData.current;
 
-        updateAtmosphere(current.weather_code);
+        updateWeatherEnvironment(current.weather_code);
 
         cityName.textContent =
             `${location.name}, ${location.country}`;
@@ -488,59 +491,43 @@ function descendToEarth() {
 // Weather Atmosphere
 // ======================
 
-function updateAtmosphere(code) {
+function updateWeatherEnvironment(code) {
 
-    // CLEAR
+    weatherEffects.className = "";
+
+    // Clear
     if (code === 0 || code === 1) {
 
-        atmosphereMaterial.color.set(0x6fdcff);
-        atmosphereMaterial.opacity = 0.18;
-
-        sun.style.opacity = "1";
-        sun.style.filter = "brightness(1)";
+        weatherEffects.classList.add("clear");
 
     }
 
-    // CLOUDY
+    // Cloudy
     else if (code === 2 || code === 3) {
 
-        atmosphereMaterial.color.set(0x9fc7d8);
-        atmosphereMaterial.opacity = 0.28;
-
-        sun.style.opacity = "0.55";
-        sun.style.filter = "brightness(0.8)";
+        weatherEffects.classList.add("cloudy");
 
     }
 
-    // RAIN
-     else if (code >= 51 && code <= 67) {
+    // Rain
+    else if (code >= 51 && code <= 67) {
 
-    atmosphereMaterial.color.set(0x254f63);
-    atmosphereMaterial.opacity = 0.65;
+        weatherEffects.classList.add("rain");
 
-    sun.style.opacity = "0.05";
-    sun.style.filter = "brightness(0.4)";
-}
+    }
 
-    // SNOW
+    // Snow
     else if (code >= 71 && code <= 77) {
 
-        atmosphereMaterial.color.set(0xb9dded);
-        atmosphereMaterial.opacity = 0.30;
-
-        sun.style.opacity = "0.45";
-        sun.style.filter = "brightness(0.85)";
+        weatherEffects.classList.add("snow");
 
     }
 
-    // STORM / HEAVY SHOWERS
+    // Showers / storms
     else if (code >= 80 && code <= 99) {
 
-        atmosphereMaterial.color.set(0x426b7d);
-        atmosphereMaterial.opacity = 0.42;
+        weatherEffects.classList.add("storm");
 
-        sun.style.opacity = "0.08";
-        sun.style.filter = "brightness(0.5)";
     }
+
 }
-updateAtmosphere(61);
