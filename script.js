@@ -497,6 +497,12 @@ function updateWeatherEnvironment(code) {
 
     weatherEffects.className = "";
 
+rainDrops.forEach(drop => drop.remove());
+rainDrops = [];
+
+snowFlakes.forEach(flake => flake.remove());
+snowFlakes = [];
+
     // Clear
     if (code === 0 || code === 1) {
 
