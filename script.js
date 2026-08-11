@@ -202,7 +202,9 @@ function animate() {
     requestAnimationFrame(animate);
 
     // Gentle continuous Earth rotation
-    earth.rotation.y += 0.0008;
+    earth.rotation.y += 0.008;
+earth.rotation.x += 0.00045;
+earth.rotation.z += 0.00022;
 
     // Keep atmosphere aligned with Earth
     atmosphere.rotation.y = earth.rotation.y;
@@ -692,4 +694,3 @@ function startLightning() {
         3000 + Math.random() * 5000
     );
 }
-
