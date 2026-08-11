@@ -497,6 +497,8 @@ function updateWeatherEnvironment(code) {
 
     weatherEffects.className = "";
 
+    clearTimeout(lightningTimer);
+
 rainDrops.forEach(drop => drop.remove());
 rainDrops = [];
 
@@ -536,12 +538,15 @@ snowFlakes = [];
     }
 
     // Showers / storms
-    else if (code >= 80 && code <= 99) {
+   else if (code >= 80 && code <= 99) {
 
-        weatherEffects.classList.add("storm");
+    weatherEffects.classList.add("storm");
 
-    }
+    createRain();
 
+    startLightning();
+
+}
 }
 
 // ======================
@@ -555,7 +560,10 @@ function createRain() {
 
     rainDrops = [];
 
-    const dropCount = 180;
+    const dropCount =
+    weatherEffects.classList.contains("storm")
+        ? 420
+        : 180;
 
     for (let i = 0; i < dropCount; i++) {
 
@@ -644,4 +652,40 @@ function createSnow() {
 
         snowFlakes.push(flake);
     }
+}
+
+// ======================
+// Lightning
+// ======================
+
+let lightningTimer;
+
+function startLightning() {
+
+    clearTimeout(lightningTimer);
+
+    function flash() {
+
+        if (!weatherEffects.classList.contains("storm")) {
+            return;
+        }
+
+        weatherEffects.classList.add("lightning");
+
+        setTimeout(() => {
+
+            weatherEffects.classList.remove("lightning");
+
+        }, 100);
+
+        lightningTimer = setTimeout(
+            flash,
+            4000 + Math.random() * 7000
+        );
+    }
+
+    lightningTimer = setTimeout(
+        flash,
+        3000 + Math.random() * 5000
+    );
 }

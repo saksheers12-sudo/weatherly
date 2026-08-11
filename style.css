@@ -502,13 +502,37 @@ body {
    STORM
    ========================= */
 
-#weather-effects.storm {
+/* =========================
+   STORM
+   ========================= */
 
+#weather-effects.storm {
     opacity: 1;
 
     background:
-        rgba(35, 48, 60, 0.28);
+        rgba(25, 38, 50, 0.38);
+
+    transition:
+        opacity 0.5s ease,
+        background 0.5s ease;
 }
+
+/* Storm rain */
+
+#weather-effects.storm .rain-drop {
+    animation-duration: 0.3s !important;
+    opacity: 0.8 !important;
+}
+
+/* Lightning */
+
+#weather-effects.lightning {
+    background:
+        rgba(235, 245, 255, 0.75);
+
+    opacity: 1;
+}
+
 
 #weather-effects.storm::before {
 
