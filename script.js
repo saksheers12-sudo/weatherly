@@ -506,11 +506,14 @@ snowFlakes.forEach(flake => flake.remove());
 snowFlakes = [];
 
     // Clear
-    if (code === 0 || code === 1) {
+if (code === 0 || code === 1) {
 
-        weatherEffects.classList.add("clear");
+    weatherEffects.classList.add("sunshine");
 
-    }
+    sun.classList.add("sunny");
+
+}
+
 
     // Cloudy
     else if (code === 2 || code === 3) {
@@ -689,3 +692,4 @@ function startLightning() {
         3000 + Math.random() * 5000
     );
 }
+

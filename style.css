@@ -605,3 +605,47 @@ body {
     }
 
 }
+
+/* =========================
+   SUNSHINE
+   ========================= */
+
+#weather-effects.clear {
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            circle at 82% 18%,
+            rgba(255, 236, 160, 0.18),
+            transparent 35%
+        );
+}
+
+#weather-effects.sunshine {
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            circle at 82% 18%,
+            rgba(255, 240, 170, 0.28),
+            transparent 38%
+        );
+}
+
+.sun.sunny {
+    animation: sunPulse 4s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+        filter: brightness(1.12);
+    }
+
+}
