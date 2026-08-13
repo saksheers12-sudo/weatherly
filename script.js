@@ -225,15 +225,55 @@ animate();
 // Responsive
 // ======================
 
-window.addEventListener("resize", () => {
+// ======================
+// Responsive Camera
+// ======================
 
-    camera.aspect = window.innerWidth / window.innerHeight;
+function updateCamera() {
+
+    const isMobile = window.innerWidth <= 600;
+
+    if (isMobile) {
+
+        camera.fov = 65;
+
+        camera.position.set(
+            0,
+            1.2,
+            8.5
+        );
+
+        earth.position.y = -4.6;
+
+    } else {
+
+        camera.fov = 75;
+
+        camera.position.set(
+            0,
+            1.0,
+            5.5
+        );
+
+        earth.position.y = -3.7;
+
+    }
+
+    camera.aspect =
+        window.innerWidth / window.innerHeight;
 
     camera.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+    );
+}
 
-});
+updateCamera();
+
+
+window.addEventListener("resize", updateCamera);
 
 // ======================
 // Weather Search
